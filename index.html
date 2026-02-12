@@ -3,108 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanal SMS Onay | Fiyat Listesi</title>
+    <title>Sanal SMS | Hızlı Sipariş</title>
     <style>
-        /* --- CSS TASARIM --- */
+        /* --- CSS (TASARIM) --- */
+        * { box-sizing: border-box; }
+        
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #0f172a;
-            color: white;
             margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            background: radial-gradient(circle at center, #1e3a8a, #000000);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            color: white;
         }
 
         .container {
-            width: 90%;
-            max-width: 500px;
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            text-align: center;
-            border: 1px solid #334155;
-        }
-
-        .logo { font-size: 2rem; font-weight: 800; color: #38bdf8; margin-bottom: 5px; }
-        .subtitle { color: #94a3b8; margin-bottom: 25px; font-size: 0.9rem; }
-
-        /* Fiyat Tablosu */
-        .price-list {
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            background: #334155;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-
-        .price-item:hover { background: #475569; transform: scale(1.02); }
-
-        .service-info { display: flex; align-items: center; gap: 10px; }
-        .price-tag { font-weight: bold; color: #fbbf24; }
-
-        /* Yönlendirme Butonu */
-        .tg-button {
-            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             width: 100%;
-            padding: 15px;
-            background: #0088cc;
-            color: white;
-            text-decoration: none;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: #3b82f6; }
+
+        h2 { font-weight: 400; font-size: 1.2rem; color: #cbd5e1; margin-bottom: 30px; }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-left: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            font-weight: bold;
-            font-size: 1.1rem;
+            color: white;
+            font-size: 1rem;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
         }
 
-        .tg-button:hover {
-            background: #00aaff;
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: rgba(0, 0, 0, 0.5);
         }
 
-        .footer-note {
+        button {
+            width: 100%;
+            padding: 16px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+
+        button:active { transform: translateY(0); }
+
+        #status {
             margin-top: 20px;
-            font-size: 0.8rem;
-            color: #64748b;
+            font-size: 0.9rem;
+            min-height: 20px;
         }
+
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="logo">REXON<span>SMS</span></div>
-        <div class="subtitle">En uygun fiyatlı sanal numaralar</div>
+        <div class="logo">TEK<span>SMS</span></div>
+        <h2>Hızlı Numara Talebi</h2>
 
-        <div class="price-list">
-            <div class="price-item">
-                <div class="service-info"> <span>WhatsApp</span></div>
-                <div class="price-tag">200.00 TL</div>
-            </div>
-            <div class="price-item">
-                <div class="service-info"> <span>Telegram</span></div>
-                <div class="price-tag">200.00 TL</div>
+        <div class="form-group">
+            <label>İstediğiniz Servis</label>
+            <input type="text" id="service" placeholder="Örn: WhatsApp, Telegram...">
         </div>
 
-        <a href="https://t.me/sizdeniyiyim" 
-           class="tg-button" target="_blank">
-            Sipariş İçin Tıkla
-        </a>
-
-        <div class="footer-note">
-            Butona tıkladığınızda operatörümüze yönlendirileceksiniz.
+        <div class="form-group">
+            <label>Telegram Kullanıcı Adınız</label>
+            <input type="text" id="username" placeholder="@kullanici_adiniz">
         </div>
+
+        <button onclick="siparisGonder()" id="btn">Siparişi İlet</button>
+        
+        <div id="status"></div>
     </div>
 
+    <script>
+        /* --- JAVASCRIPT (MANTIK) --- */
+        
+        // BURAYI KENDİ BİLGİLERİNLE DOLDUR
+        const BOT_TOKEN = "8437185769:AAGWpyUHwZCbxS_nBeahPgRLNjgPU33S66E"; 
+        const CHAT_ID = "6156867819";
+
+        function siparisGonder() {
+            const service = document.getElementById('service').value;
+            const user = document.getElementById('username').value;
+            const statusDiv = document.getElementById('status');
+            const btn = document.getElementById('btn');
+
+            if (!service || !user) {
+                statusDiv.innerHTML = "<span class='error'>Lütfen tüm alanları doldurun!</span>";
+                return;
+            }
+
+            // Butonu geçici olarak devre dışı bırak
+            btn.disabled = true;
+            btn.innerText = "Gönderiliyor...";
+            statusDiv.innerHTML = "";
+
+            const mesaj = `🚀 **YENİ SİPARİŞ GELDİ!**\n\n` +
+                          `📱 Servis: ${service}\n` +
+                          `👤 Müşteri: ${user}\n` +
+                          `⏰ Zaman: ${new Date().toLocaleString('tr-TR')}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+            
+            // Veriyi Telegrama gönder
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: mesaj,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusDiv.innerHTML = "<span class='success'>✅ Talebiniz iletildi! Sizinle iletişime geçeceğiz.</span>";
+                    document.getElementById('service').value = "";
+                    document.getElementById('username').value = "";
+                } else {
+                    statusDiv.innerHTML = "<span class='error'>❌ Bir hata oluştu.</span>";
+                }
+            })
+            .catch(() => {
+                statusDiv.innerHTML = "<span class='error'>❌ Bağlantı hatası!</span>";
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerText = "Siparişi İlet";
+            });
+        }
+    </script>
 </body>
-    </html>
+</html>
